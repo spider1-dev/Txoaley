@@ -628,15 +628,15 @@ def worker(ip, port, combined_str, get_host, request):
         failed_requests += 1
 
 def create_dns_packet():
-    dns_packet = b"\x00\x00"  # Transaction ID
-    dns_packet += b"\x01\x00"  # Flags: Standard Query
-    dns_packet += b"\x00\x01"  # Question count
-    dns_packet += b"\x00\x00"  # Answer count
-    dns_packet += b"\x00\x00"  # Authority count
-    dns_packet += b"\x00\x00"  # Additional count
-    dns_packet += b"\x03www\x07example\x03com\x00"  # Query: www.example.com
-    dns_packet += b"\x00\x01"  # Query type: A (IPv4 address)
-    dns_packet += b"\x00\x01"  # Query class: IN (Internet)
+    dns_packet = b"\x00\x00"  
+    dns_packet += b"\x01\x00"  
+    dns_packet += b"\x00\x01" 
+    dns_packet += b"\x00\x00" 
+    dns_packet += b"\x00\x00" 
+    dns_packet += b"\x00\x00" 
+    dns_packet += b"\x03www\x07example\x03com\x00"  
+    dns_packet += b"\x00\x01"  
+    dns_packet += b"\x00\x01" 
     return dns_packet
 
 def create_tcp_packet(source_port, dest_port, seq_number, ack_number, flags):
