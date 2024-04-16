@@ -717,7 +717,7 @@ def worker(ip, port, combined_str, request, sendbutton, payload):
         payload = bytes("A" * 1400, "utf-8")
         print(bccolar.blm + "[+]" +  bccolar.GREEN  +"Fuzzer Payload başarıyla gönderildi")
         icmp_packet = create_icmp_echo_request(os.getpid() & 0xFFFF, 1, len(payload))
-        icmp_sock.sendto(icmp_packet, (ip, 1))
+        icmp_sock.sendto(icmp_packet, (ip, port))
         icmp_sock.close()
         print(bccolar.GREEN + ip + ":" + bccolar.YELLOW + str(port) + bccolar.RED + " [+]" + bccolar.YELLOW + " Hedefe payload gönderildi!")
         successful_requests += 1
