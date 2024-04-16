@@ -1,5 +1,7 @@
 # Txoaley
-Txoaley
+Kurulum
+
+Cmd açıp bunları yazıyoruz;
 
 pip insyall struct
 
