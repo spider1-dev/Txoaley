@@ -4,6 +4,9 @@ import (
 	"fmt"
 	"net"
 	"sync"
+	"github.com/google/gopacket"
+	"github.com/google/gopacket/layers"
+	"github.com/google/gopacket/pcap"
 	"golang.org/x/net/icmp"
 	"golang.org/x/net/ipv4"
 )
